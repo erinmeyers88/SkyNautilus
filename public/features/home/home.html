@@ -1,0 +1,66 @@
+<div class="backgroundImage"></div>
+<div class="formBackground">
+    <form action="" method="post" class="flightSearch searchForm">
+        <h1>Search Flights</h1>
+
+        <div class="radioButtons">
+            <label>One-way
+                <input id="name" type="radio" name="name" placeholder="Destination" />
+            </label>
+            <label>Round-trip
+                <input id="name" type="radio" name="name" placeholder="Destination" />
+            </label>
+        </div>
+
+
+        <div class="destinationInput">
+            <label>
+                <span>Destination:</span>
+                <input id="name" type="destination" name="name" />
+            </label>
+        </div>
+
+
+        <div class="dateInput">
+            <label>
+                <span>Depart:</span>
+                <datepicker date-year-title="selected title" date-format="MM/dd/yy">
+                    <input ng-model="date" type="email" />
+                </datepicker>
+            </label>
+
+
+            <label>
+                <span>Return:</span>
+                <datepicker date-year-title="selected title" date-format="MM/dd/yy">
+                    <input ng-model="date" type="email" />
+                </datepicker>
+            </label>
+        </div>
+
+        <div class="passengerInput">
+            <label>
+                <span>Passengers:</span>
+                <select name="selection">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="submitSearch">
+            <label>
+                <input type="button" class="button" value="Search" />
+            </label>
+        </div>
+
+    </form>
+</div>
+<div class="titleBackground"></div>
+<div class="title">
+    SkyNautilus
+</div>
+
+<div class="catchyPhrase">Reverse flight search</div>
