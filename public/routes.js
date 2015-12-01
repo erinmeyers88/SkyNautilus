@@ -14,4 +14,6 @@ angular.module("skyNautilus")
 				controller: "searchResultsCtrl"
 			});
 		
+		$urlRouterProvider.otherwise("/");
+		
 	});

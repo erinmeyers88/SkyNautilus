@@ -6,12 +6,100 @@ body {
 }
 
 
-header {
-	height: 70px;
-	width: 100%;
+/*#####################################
+######## Menu #########
+#######################################*/
+
+menu {
+    width: 100%;
+    height: 50px;
+    margin: 0;
+    padding: 0;
 }
 
-/*############# HOME PAGE ###############*/
+.menuInside {
+	display: flex;
+    flex-direction: row;
+	justify-content: center;
+}
+
+.menuItem {
+	font-size: 30px;
+}
+
+
+/*#####################################
+######## Changes to Datepicker #########
+#######################################*/
+
+
+datepicker select, datepicker select:focus, datepicker select:hover,
+.datepicker select, .datepicker select:focus, .datepicker select:hover,
+[datepicker] select, [datepicker] select:focus, [datepicker] select:hover{
+  width:100%;
+   overflow: hidden;
+   background:none;
+   color:#fff;
+   background-color: #000080;
+   border-radius:2px;
+   border: 0;
+   margin-top:5px;
+}
+
+._720kb-datepicker-calendar {
+  background: white;
+  color: #333;
+  position: absolute;
+  z-index: 999;
+  min-width: 220px;
+  margin: 0 auto;
+  width: 101%;
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+  visibility: hidden;
+  overflow:hidden;
+  margin-left:-0.5%;
+  padding: 0 0 2% 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  left: -35px;
+  top: -245px;
+}
+
+._720kb-datepicker-calendar-header:nth-child(odd) {
+  background: #000080;
+}
+._720kb-datepicker-calendar-header:nth-child(even) {
+  background: #000080;
+}
+
+/*Arrows*/
+._720kb-datepicker-calendar-header a, ._720kb-datepicker-calendar-header a:hover {
+  text-decoration:none;
+  padding:3% 9% 4% 9%;
+  font-size: 13.5px;
+  color: #fff;
+  font-weight: bold;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+/*Year*/
+._720kb-datepicker-calendar-month span {
+  font-size: 13px;
+  color: #fff;
+}
+
+._720kb-datepicker-default-button{
+  padding:0;
+}
+
+/*#####################################
+############# HOME PAGE ###############
+#######################################*/
 
 .backgroundImage {
 	height: 570px;
@@ -242,22 +330,20 @@ datepicker input {
     font-family: Arial, Helvetica, sans-serif
 }
 
+/*#####################################
+############# Search Results ###############
+#######################################*/
 
-/*Search Results Page*/
 
-html, body {
+.pageWrapper {
+	display: flex;
+	flex-direction: column;
 	width: 100%;
 	margin: 0;
 	padding: 0;
 	background-image: url("features/searchResults/nautilus1.jpg");
 	background-repeat: repeat;
 	height: auto;
-}
-
-.pageWrapper {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
 }
 
 .listWrapper {
