@@ -1,78 +1,87 @@
-<menu></menu>	
+<menu></menu>
 <div class="pageWrapper">
 
+	<div class="modifySearch">
+		<input type="button" class="modifySearchButton" value="Modify Search" />
+	</div>
 
 	<div class="listWrapper">
+
 		<div class="searchResultsListing" ng-repeat="item in searchResults.tripOption">
 
-			<div class="column" ng-repeat="slice in item.slice">
-				<div class="label">Departing</div>
-				<div ng-repeat="segment in slice.segment">
-					<div ng-repeat="leg in segment.leg">
-						<div class="secondRow bold">{{leg.origin}}</div>
-						<div class="thirdRow">{{leg.cleanDepartureTime | date: 'h:mm a' }}</div>
-						<div class="fourthRow">{{leg.cleanDepartureTime | date: 'MMM d, y'}}</div>
-					</div>
-				</div>
-			</div>
+			<div class="dataWrapper">
 
-			<div class="column" ng-repeat="slice in item.slice">
-				<div class="label">Arriving</div>
-				<div ng-repeat="segment in slice.segment">
-					<div ng-repeat="leg in segment.leg">
-						<div class="secondRow bold">{{leg.destination}}</div>
-						<div class="thirdRow">{{leg.cleanArrivalTime | date: 'h:mm a'}}</div>
-						<div class="fourthRow">{{leg.cleanArrivalTime | date: 'MMM d, y'}}</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="column" ng-repeat="slice in item.slice">
-				<div class="label">Flight</div>
-				<div ng-repeat="segment in slice.segment">
-					<div class="secondRow bold">{{segment.flight.carrier}}</div>
-					<div class="thirdRow">{{segment.flight.number}}</div>
-					<div class="fourthRow">
-						<br>
-					</div>
-				</div>
-			</div>
-
-			<div class="column" ng-repeat="slice in item.slice">
-				<div class="label">Duration</div>
-				<div ng-repeat="segment in slice.segment">
-					<div class="secondRow bold">{{segment.cleanDuration}}</div>
-					<div ng-repeat="leg in segment.leg">
-						<div class="thirdRow">
-							<br>
+				<div class="column" ng-repeat="slice in item.slice">
+					<div class="label">Departing</div>
+					<div ng-repeat="segment in slice.segment">
+						<div ng-repeat="leg in segment.leg">
+							<div class="secondRow bold">{{leg.origin}}</div>
+							<div class="thirdRow">{{leg.cleanDepartureTime | date: 'h:mm a' }}</div>
+							<div class="fourthRow">{{leg.cleanDepartureTime | date: 'MMM d, y'}}</div>
 						</div>
+					</div>
+				</div>
+
+				<div class="column" ng-repeat="slice in item.slice">
+					<div class="label">Arriving</div>
+					<div ng-repeat="segment in slice.segment">
+						<div ng-repeat="leg in segment.leg">
+							<div class="secondRow bold">{{leg.destination}}</div>
+							<div class="thirdRow">{{leg.cleanArrivalTime | date: 'h:mm a'}}</div>
+							<div class="fourthRow">{{leg.cleanArrivalTime | date: 'MMM d, y'}}</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="column" ng-repeat="slice in item.slice">
+					<div class="label">Flight</div>
+					<div ng-repeat="segment in slice.segment">
+						<div class="secondRow bold">{{segment.flight.carrier}}</div>
+						<div class="thirdRow">{{segment.flight.number}}</div>
 						<div class="fourthRow">
 							<br>
 						</div>
 					</div>
 				</div>
+
+				<div class="column" ng-repeat="slice in item.slice">
+					<div class="label">Duration</div>
+					<div ng-repeat="segment in slice.segment">
+						<div class="secondRow bold">{{segment.cleanDuration}}</div>
+						<div ng-repeat="leg in segment.leg">
+							<div class="thirdRow">
+								<br>
+							</div>
+							<div class="fourthRow">
+								<br>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="column" ng-repeat="pricing in item.pricing">
+					<div class="label">Passengers</div>
+					<div class="secondRow bold passengers">{{pricing.passengers.adultCount}}</div>
+				</div>
+
+
+
+				<div class="column">
+					<div class="label lastLabel">Price</div>
+					<div class="bigCell bold">{{item.saleTotal}}</div>
+				</div>
+
+
+
+
 			</div>
-
-			<div class="column" ng-repeat="pricing in item.pricing">
-				<div class="label">Passengers</div>
-				<div class="secondRow bold passengers">{{pricing.passengers.adultCount}}</div>
+			<div class="buttonWrapper">
+				<div class="column saveButtonDiv">
+					<div class="fakeLabel"></div>
+					<input type="button" class="saveButton" value="Save to&#13;&#10;Trips" />
+				</div>
 			</div>
-
-
-
-			<div class="column">
-				<div class="label">Price</div>
-				<div class="bigCell bold">{{item.saleTotal}}</div>
-			</div>
-
-
-			<div class="column saveButtonDiv">
-				<div class="fakeLabel"></div>
-				<input type="button" class="saveButton" value="Save to&#13;&#10;Trips" />
-			</div>
-
 		</div>
-
 	</div>
 
 
@@ -104,4 +113,3 @@
 
 </div>
 </div>
-

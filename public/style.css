@@ -1,8 +1,9 @@
 body {
 	margin: 0;
 	padding: 0;
-	height: 1000px;
+	height: auto;
 	width: 100%;
+ 
 }
 
 
@@ -15,16 +16,30 @@ menu {
     height: 50px;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    position: fixed;
+    background-color: #fff;
+    z-index: 10;
 }
 
 .menuInside {
+    width: 100%;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    position: absolute; 
+    width: 500px; 
+    right: 30px;
 	display: flex;
     flex-direction: row;
-	justify-content: center;
+	justify-content: space-between;
+    line-height: 50px;
 }
 
 .menuItem {
-	font-size: 30px;
+	font-size: 20px;
 }
 
 
@@ -245,7 +260,6 @@ datepicker select, datepicker select:focus, datepicker select:hover,
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 300px;
     margin-top: 10px;
 }
 
@@ -320,7 +334,7 @@ datepicker input {
     width: 300px;
     height: 81px;
 	position: absolute;
-	top: 450px;
+	top: 400px;
     right: 15px;
     color: #fff;
     font-size: 50px;
@@ -336,27 +350,60 @@ datepicker input {
 
 
 .pageWrapper {
-	display: flex;
-	flex-direction: column;
 	width: 100%;
 	margin: 0;
 	padding: 0;
 	background-image: url("features/searchResults/nautilus1.jpg");
 	background-repeat: repeat;
-	height: auto;
+    height: auto;
+}
+
+.modifySearch {
+    display: flex;
+    flex-direction: row;
+    width: 250px;
+	position: fixed;
+    right: 50px;
+	top: 100px;
+	justify-content: center;
+    margin-bottom: 20px;
+}
+
+.modifySearchButton {
+    height: 40px;
+	width: 150px;
+	border-radius: 5px;
+	margin: 0 auto;
+	background-color:#000080;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-border-radius: 5px;
+    border: 1px solid #fff;
+    color: #FFF;
+    font-size: 16px;
+}
+
+.modifySearchButton:hover {
+	background-color:#0000cc;
 }
 
 .listWrapper {
 	width: 65%;
 	height: 100%;
-	position: absolute;
+	position: relative;
 	left: 50px;
 	top: 100px;
 	justify-content: flex-start;
 }
 
 .searchResultsListing {
-	display: flex;
+    display: flex;
+    flex-direction: row;
+}
+
+.dataWrapper {
+    width: 90%;
+    display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
 	border: 1px solid rgb(0, 0, 128);
@@ -364,6 +411,14 @@ datepicker input {
 	background-color: white;
 	opacity: .9;
 	margin-bottom: 15px;
+}
+
+.buttonWrapper {
+    width: 10%;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .column {
@@ -387,6 +442,10 @@ datepicker input {
 	border-bottom: 2px solid black;
 	line-height: 25px;
 	border-right: 1px solid white;
+}
+
+.lastLabel {
+    border-right: none;
 }
 
 .secondRow {
@@ -444,19 +503,19 @@ datepicker input {
 }
 
 .saveButton {
-	height: 40px;
-	width: 70px;
+	height: 50px;
+	width: 80px;
 	border-radius: 5px;
 	margin: 0 auto;
-	
 	background-color:#000080;
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-border-radius: 5px;
-    border: none;
+    border: 1px solid #fff;
     color: #FFF;
-    font-size: 12px;
+    font-size: 14px;
     margin-top: 10px;
+    margin-left: 10px;
 }
 
 
@@ -473,17 +532,24 @@ div p {
 	border: 1px solid black;
 }*/
 
+
+/*########################
+#########Filter##########
+##########################*/
+
 .filterWrapper {
 	display: flex;
 	flex-direction: column;
 	align-content: flex-start;
-	position: absolute;
+	position: fixed;
 	right: 50px;
-	top: 50px;
+	top: 175px;
 	min-height: 300px;
 	width: 250px;
-	border: 1px solid white;
+    border: 1px solid #fff;
 	border-radius: 5px;
+	background-color: white;
+	opacity: .9;
 }
 
 .filterLabel {
@@ -496,8 +562,7 @@ div p {
 	line-height: 30px;
 	height: 30px;
 	text-align: center;
-	border-bottom: 1px solid white;
-	border-top: 1px rgb(0, 0, 128);
+    border-radius: 5px;
 }
 
 .filters {
@@ -511,9 +576,9 @@ div p {
 	font-size: 16px;
 	font-weight: bold;
 	font-family: Arial, Helvetica, sans-serif;
-	color: white;
+	
 	margin-top: 10px;
-	margin-bottom: 15px;
+	margin-bottom: 10px;
 	line-height: 25px;
 	text-align: center;
 	min-height: 100px;
@@ -525,6 +590,9 @@ div p {
 
 .smallFilterLabel {
 	margin-bottom: 5px;
+    background-color: rgb(0, 0, 128);
+    color: #fff;
+    border-radius: 5px;
 }
 
 .chipSection {
@@ -537,12 +605,11 @@ div p {
 	height: 30px;
 	width: 100px;
 	margin: 0 auto;
-	background-color:#fff;
+	background-color: rgb(0, 0, 128);
+    color: #fff;
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-border-radius: 5px;
-    border: none;
-    color: black;
     font-size: 12px;
     margin-top: 10px;
 	display: flex;

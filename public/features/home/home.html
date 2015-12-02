@@ -7,10 +7,10 @@
 
         <div class="radioButtons">
             <label>One-way
-                <input id="name" type="radio" name="name" placeholder="Destination" />
+                <input id="oneway" type="radio" name="name" ng-model="tripType" value="oneway"/>
             </label>
             <label>Round-trip
-                <input id="name" type="radio" name="name" placeholder="Destination" />
+                <input id="roundtrip" type="radio" name="name" ng-model="tripType" value="roundtrip" />
             </label>
         </div>
 
@@ -18,24 +18,27 @@
         <div class="destinationInput">
             <label>
                 <span>Destination:</span>
-                <input id="name" type="destination" name="name" />
+                <input list="airports" id="name" type="destination" name="name" ng-model="destination" />
             </label>
         </div>
+
+        
+        <datalist id="airports"></datalist>
 
 
         <div class="dateInput">
             <label>
                 <span>Depart:</span>
                 <datepicker date-year-title="selected title" date-format="MM/dd/yy">
-                    <input ng-model="date" type="email" />
+                    <input ng-model="departureDate" type="email"/>
                 </datepicker>
             </label>
 
 
-            <label>
+            <label ng-show="isShown('roundtrip')">
                 <span>Return:</span>
                 <datepicker date-year-title="selected title" date-format="MM/dd/yy">
-                    <input ng-model="date" type="email" />
+                    <input ng-model="returnDate" type="email"/>
                 </datepicker>
             </label>
         </div>
@@ -43,7 +46,7 @@
         <div class="passengerInput">
             <label>
                 <span>Passengers:</span>
-                <select name="selection">
+                <select name="selection" ng-model="passengerCount">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -54,7 +57,7 @@
 
         <div class="submitSearch">
             <label>
-                <input type="button" class="button" value="Search" />
+                <input type="button" class="button" value="Search"/>
             </label>
         </div>
 
