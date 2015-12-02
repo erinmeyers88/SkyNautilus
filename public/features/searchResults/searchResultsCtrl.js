@@ -3,84 +3,84 @@ angular.module("skyNautilus")
 
     //Create the request body for the flight search.
 
-    $scope.requestBody = {
-      "request": {
-        "passengers": {
-          "kind": "qpxexpress#passengerCounts",
-          "adultCount": 1,
-          "childCount": 0,
-          "infantInLapCount": 0,
-          "infantInSeatCount": 0,
-          "seniorCount": 0
-        },
-        "slice": [
-          {
-            "kind": "qpxexpress#sliceInput",
-            "origin": "PDX",
-            "destination": "LAX",
-            "date": "2015-12-15",
-            "maxStops": 10,
-            "maxConnectionDuration": 1440,
-            "preferredCabin": "",
-            "permittedDepartureTime": {
-              // "kind": "qpxexpress#timeOfDayRange",
-              // "earliestTime": "01:00",
-              // "latestTime": "23:00"
-            },
-            "permittedCarrier": [
-              ""
-            ],
-            "alliance": "",
-            "prohibitedCarrier": [
-              ""
-            ]
-          }
-        ],
-        "maxPrice": "",
-        "saleCountry": "",
-        "refundable": "",
-        "solutions": 50
-      }
-    };
+    // $scope.requestBody = {
+    //   "request": {
+    //     "passengers": {
+    //       "kind": "qpxexpress#passengerCounts",
+    //       "adultCount": 1,
+    //       "childCount": 0,
+    //       "infantInLapCount": 0,
+    //       "infantInSeatCount": 0,
+    //       "seniorCount": 0
+    //     },
+    //     "slice": [
+    //       {
+    //         "kind": "qpxexpress#sliceInput",
+    //         "origin": "PDX",
+    //         "destination": "LAX",
+    //         "date": "2015-12-15",
+    //         "maxStops": 10,
+    //         "maxConnectionDuration": 1440,
+    //         "preferredCabin": "",
+    //         "permittedDepartureTime": {
+    //           // "kind": "qpxexpress#timeOfDayRange",
+    //           // "earliestTime": "01:00",
+    //           // "latestTime": "23:00"
+    //         },
+    //         "permittedCarrier": [
+    //           ""
+    //         ],
+    //         "alliance": "",
+    //         "prohibitedCarrier": [
+    //           ""
+    //         ]
+    //       }
+    //     ],
+    //     "maxPrice": "",
+    //     "saleCountry": "",
+    //     "refundable": "",
+    //     "solutions": 50
+    //   }
+    // };
     
 
     //Set up the search function, which accepts an argument which is a request body.
     $scope.search = function (argument) {
       flightSearchService.searchResults(argument).then(function (resultOfSearch) {
 
-          var airlineCodes = {
-                AS: "Alaska Airlines",
-                US: "US Air",
-                VX: "Virgin America",
-                B6: "Jet Blue",
-                UA: "United Airlines",
-                WS: "WestJet"
-              };
-        
+        var airlineCodes = {
+          AS: "Alaska Airlines",
+          US: "US Air",
+          VX: "Virgin America",
+          B6: "Jet Blue",
+          UA: "United Airlines",
+          WS: "WestJet"
+        };
+
         $scope.searchResults = resultOfSearch;
 
         console.log($scope.searchResults);
-        
-        
+
+
         $scope.airlines = [];
         $scope.cities = [];
         
         //Airline Filter Info
         $scope.searchResults.data.carrier.forEach(function (airline) {
-          
+
           airline.code = airline.code.replace(/AS|US|VX|B6|UA|WS/gi, function (code) {
-                return airlineCodes[code];
-              });
-          
+            return airlineCodes[code];
+          });
+
           $scope.airlines.push(airline.code);
-                  
+
         });
         
         //Origin Filter Info
         $scope.searchResults.data.city.forEach(function (city) {
- 
+
           $scope.cities.push(city.code);
-          
+
         });
         
         
@@ -141,6 +141,17 @@ angular.module("skyNautilus")
     };
 
     //Call the search function and pass it the request body.
-    $scope.search($scope.requestBody);
+    // $scope.search($scope.requestBody);
+
+
+
+    $scope.getsearchResults = function () {
+      $scope.searchResults = flightSearchService.getCurrentSearch();
+    };
+
+
+    $scope.getsearchResults();
+
+    console.log($scope.searchResults);
 
   });
