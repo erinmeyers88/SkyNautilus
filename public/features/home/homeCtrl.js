@@ -8,7 +8,7 @@ angular.module("skyNautilus")
     $scope.isShown = function (tripType) {
       return tripType === $scope.tripType;
     };
-	
+  
 ////////////Request bodies////////////////////////////////////////
 	
   
@@ -115,9 +115,11 @@ angular.module("skyNautilus")
       if ($scope.tripType === "oneway") {
         JSON.stringify($scope.onewayRequestBody);
         flightSearchService.saveSearchData($scope.onewayRequestBody);
+        flightSearchService.setTripType($scope.tripType);
         } else {
         JSON.stringify($scope.roundtripRequestBody);
         flightSearchService.saveSearchData($scope.roundtripRequestBody);
+        flightSearchService.setTripType($scope.tripType);
       }
     };
     

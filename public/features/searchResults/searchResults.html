@@ -16,7 +16,7 @@
 					<div class="outboundData">
 						<div class="column">
 							<div class="label">Departing</div>
-							<div class="tripLabel">Outbound</div>
+							<div class="tripLabel" ng-show="isShown('roundtrip')">Outbound</div>
 							<div ng-repeat="segment in item.slice[0].segment">
 								<div ng-repeat="leg in segment.leg">
 									<div class="secondRow bold">{{leg.origin}}</div>
@@ -28,7 +28,7 @@
 
 						<div class="column">
 							<div class="label">Arriving</div>
-							<div class="tripLabel">
+							<div class="tripLabel" ng-show="isShown('roundtrip')">
 								<br>
 							</div>
 							<div ng-repeat="segment in item.slice[0].segment">
@@ -42,7 +42,7 @@
 
 						<div class="column">
 							<div class="label">Flight</div>
-							<div class="tripLabel">
+							<div class="tripLabel" ng-show="isShown('roundtrip')">
 								<br>
 							</div>
 							<div ng-repeat="segment in item.slice[0].segment">
@@ -56,7 +56,7 @@
 
 						<div class="column">
 							<div class="label">Duration</div>
-							<div class="tripLabel"><br></div>
+							<div class="tripLabel" ng-show="isShown('roundtrip')"><br></div>
 							<div ng-repeat="segment in item.slice[0].segment">
 								<div class="secondRow"><br></div>
 								<div ng-repeat="leg in segment.leg" class="thirdRow">{{leg.cleanDuration}}</div>	
@@ -69,7 +69,7 @@
 
 					<!--RETURN---------------------------------------------------------------->
 
-					<div class="returnData" ng-show="">
+					<div class="returnData" ng-show="isShown('roundtrip')">
 
 						<div class="column">
 							<div class="tripLabel">Return</div>

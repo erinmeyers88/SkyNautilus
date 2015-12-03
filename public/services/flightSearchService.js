@@ -2,6 +2,19 @@ angular.module("skyNautilus")
 	.service("flightSearchService", function ($http, $q) {
 		
 		
+		//Gets trip type from homeCtrl
+		
+		var tripType = "";
+		
+		
+		this.setTripType = function (data) {
+			tripType = data;	
+		};
+		
+		this.getTripType = function () {
+			return tripType;
+		};
+		
 		//Save search data to service so that I can repopulate search form to modify search in searchResultsCtrl	
 		var userSearch = {};
 

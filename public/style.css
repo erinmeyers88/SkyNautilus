@@ -186,7 +186,7 @@ datepicker select, datepicker select:focus, datepicker select:hover,
     font-size: 16px;
 }
 
-.flightSearch input[type="destination"] {
+.destination {
     color: black;
     height: 25px;
     width: 150px;
@@ -200,7 +200,7 @@ datepicker select, datepicker select:focus, datepicker select:hover,
     
 }
 
-.flightSearch input[type="email"] {
+.date {
     color: black;
     height: 25px;
     width: 100px;

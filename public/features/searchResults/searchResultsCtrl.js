@@ -7,15 +7,19 @@ angular.module("skyNautilus")
     
     $scope.getSearchData = function () {
       $scope.searchData = loadResults;
-      console.log($scope.searchData);
-      
       $scope.searchResults = $scope.searchData.searchResults;
       $scope.cities = $scope.searchData.cities;
       $scope.airlines = $scope.searchData.airlines;
-      console.log("test");
+      
+      $scope.tripType = flightSearchService.getTripType();
     }();
     
     console.log($scope.searchResults);
+
+     $scope.isShown = function (tripType) {
+      return tripType === $scope.tripType;
+    };
+    
 
   });
   
