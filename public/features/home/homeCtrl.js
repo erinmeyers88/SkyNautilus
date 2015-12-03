@@ -1,24 +1,21 @@
 angular.module("skyNautilus")
 
-  .controller("homeCtrl", function ($scope, flightSearchService) {
+  .controller("homeCtrl", function ($scope, flightSearchService, $state) {
 	
-    //Toggle oneway or roundtrip 
-	
+    //Toggle oneway or roundtrip search option display
     $scope.tripType = "roundtrip";
 
     $scope.isShown = function (tripType) {
       return tripType === $scope.tripType;
     };
 	
-    ////////////Request bodies////////////////
+////////////Request bodies////////////////////////////////////////
 	
   
-    //One Way
+    //One Way/////////////////////////////
     $scope.populateSearch = function () {
 
       $scope.passengerCount = Number($scope.passengerCount);
-
-      console.log(typeof $scope.passengerCount);
 
       $scope.onewayRequestBody = {
         request: {
@@ -57,8 +54,7 @@ angular.module("skyNautilus")
       };
 	
   
-      //Round Trip
-  
+      //Round Trip////////////////////////////////////////////
       $scope.roundtripRequestBody = {
         request: {
           passengers: {
@@ -69,7 +65,7 @@ angular.module("skyNautilus")
             infantInSeatCount: 0,
             seniorCount: 0
           },
-          slice: [
+           slice: [
             {
               kind: "qpxexpress#sliceInput",
               origin: "PDX",
@@ -78,12 +74,16 @@ angular.module("skyNautilus")
               maxStops: 10,
               maxConnectionDuration: 1440,
               preferredCabin: "",
-              permittedDepartureTime: {},
-              permittedCarrier: [],
+              permittedDepartureTime: {
+                kind: "qpxexpress#timeOfDayRange",
+                earliestTime: "",
+                latestTime: ""
+              },
+              permittedCarrier: [""],
               alliance: "",
-              prohibitedCarrier: []
+              prohibitedCarrier: [""]
             },
-            {
+             {
               kind: "qpxexpress#sliceInput",
               origin: $scope.destination,
               destination: "PDX",
@@ -91,10 +91,14 @@ angular.module("skyNautilus")
               maxStops: 10,
               maxConnectionDuration: 1440,
               preferredCabin: "",
-              permittedDepartureTime: {},
-              permittedCarrier: [],
+              permittedDepartureTime: {
+                kind: "qpxexpress#timeOfDayRange",
+                earliestTime: "",
+                latestTime: ""
+              },
+              permittedCarrier: [""],
               alliance: "",
-              prohibitedCarrier: []
+              prohibitedCarrier: [""]
             }
           ],
           maxPrice: "",
@@ -105,109 +109,32 @@ angular.module("skyNautilus")
       };
     };   
     
-    //Search function
-	
-    $scope.saveSearchData = function () {
+    
+    //Search function///////////////////////////////////////////////////////////
+    $scope.getSearchResults = function () {
       if ($scope.tripType === "oneway") {
         JSON.stringify($scope.onewayRequestBody);
         flightSearchService.saveSearchData($scope.onewayRequestBody);
-
-        flightSearchService.searchResults($scope.onewayRequestBody).then(function (resultOfSearch) {
-
-          var airlineCodes = {
-            AS: "Alaska Airlines",
-            US: "US Air",
-            VX: "Virgin America",
-            B6: "Jet Blue",
-            UA: "United Airlines",
-            WS: "WestJet"
-          };
-
-          $scope.searchResults = resultOfSearch;
-
-          $scope.airlines = [];
-          $scope.cities = [];
-        
-          //Airline Filter Info
-          $scope.searchResults.data.carrier.forEach(function (airline) {
-
-            airline.code = airline.code.replace(/AS|US|VX|B6|UA|WS/gi, function (code) {
-              return airlineCodes[code];
-            });
-
-            $scope.airlines.push(airline.code);
-
-          });
-        
-          //Origin Filter Info
-          $scope.searchResults.data.city.forEach(function (city) {
-
-            $scope.cities.push(city.code);
-
-          });
-        
-        
-          //Flight Search Info
-          $scope.searchResults.tripOption.forEach(function (option1) {
-
-            option1.saleTotal = option1.saleTotal.replace("USD", "$");
-
-            option1.slice.forEach(function (option2) {
-
-              option2.segment.forEach(function (option3) {
-
-                var m = option3.duration % 60;
-                var h = (option3.duration - m) / 60;
-
-                option3.cleanDuration = h.toString() + ":" + (m < 10 ? "0" : "") + m.toString();
-
-
-                option3.flight.carrier = option3.flight.carrier.replace(/AS|US|VX|B6|UA|WS/gi, function (code) {
-                  return airlineCodes[code];
-                });
-            
-               
-                // option3.flight.number,
-                 
-
-                option3.leg.forEach(function (option4) {
-
-
-                  option4.cleanDepartureTime = new Date(option4.departureTime);
-                    
-                  // option4.origin,
-                    
-                  option4.cleanArrivalTime = new Date(option4.arrivalTime);
-              
-                   
-                  // option4.destination,
-                    
-                  // option4.duration
-                  
-
-                }
-                  );
-              });
-
-            });
-
-          });
-
-          console.log($scope.searchResults);
-
-          flightSearchService.setCurrentSearch($scope.searchResults);
-
-        });
-
-      } else {
+        } else {
         JSON.stringify($scope.roundtripRequestBody);
         flightSearchService.saveSearchData($scope.roundtripRequestBody);
-        flightSearchService.searchResults($scope.roundtripRequestBody);
       }
-
-
     };
+    
+    //Change to search results view///
+    $scope.goToSearchResults = function () {
+      $state.go("searchresults", {});
+      console.log("Changing states");
+    };
+    
+   //Variables///////////////////////     
+   $scope.searchResults = flightSearchService.searchResults;
+   $scope.airlines = flightSearchService.airlines;
+   $scope.cities = flightSearchService.cities;     
+  
+
+});
 
 
 
-  });
+ 

@@ -11,7 +11,12 @@ angular.module("skyNautilus")
 			.state("searchresults", {
 				url: "/searchresults",
 				templateUrl: "features/searchResults/searchResults.html",
-				controller: "searchResultsCtrl"
+				controller: "searchResultsCtrl",
+				resolve: {
+					loadResults: function (flightSearchService) {
+						return flightSearchService.search();
+					} 
+				}
 			});
 		
 		$urlRouterProvider.otherwise("/");

@@ -399,18 +399,29 @@ datepicker input {
 .searchResultsListing {
     display: flex;
     flex-direction: row;
+	margin-bottom: 15px;
 }
 
-.dataWrapper {
-    width: 90%;
-    display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
-	border: 1px solid rgb(0, 0, 128);
+.whiteBackground {
+    border: 1px solid rgb(0, 0, 128);
 	border-radius: 5px;
 	background-color: white;
 	opacity: .9;
-	margin-bottom: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.outboundData, .returnData {
+    display: flex;
+    flex-direction: row;
+}
+
+.dataWrapper {
+    display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
 }
 
 .buttonWrapper {
@@ -432,7 +443,10 @@ datepicker input {
 	justify-content: flex-start;
 }
 
-
+.rightSection {
+    display: flex;
+    flex-direction: row;
+}
 
 .label {
 	font-size: 16px;
@@ -446,6 +460,14 @@ datepicker input {
 
 .lastLabel {
     border-right: none;
+}
+
+.tripLabel {
+   line-height: 20px;
+   font-size: 14px;
+   color: #fff;
+   background-color: #0000cc;
+   margin-top: 3px;
 }
 
 .secondRow {
